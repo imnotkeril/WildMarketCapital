@@ -1,0 +1,1644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wild Market Capital | Algorithmic Trading Fund</title>
+    <style>
+        :root {
+            --primary-bg: #0e0e12;
+            --secondary-bg: #141418;
+            --accent: #bf9ffb;  /* Changed to exact purple color provided */
+            --accent-hover: #cdb2fb; /* Lighter purple for hover states */
+            --text: #f5f5f7;
+            --text-secondary: #a0a0a7;
+            --success: #36b37e;
+            --section-padding: 5rem 0;
+            --container-width: 1200px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text);
+            line-height: 1.6;
+            font-weight: 400;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 3rem;
+        }
+
+        h2:after {
+            content: "";
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background-color: var(--accent);
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--accent-hover);
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.5rem 0;
+            transition: all 0.3s ease;
+            background-color: rgba(14, 14, 18, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .logo-subtitle {
+            font-size: 0.9rem;
+            color: var(--accent);
+            margin-left: 0.1rem;
+            align-self: flex-end;
+            margin-bottom: 0.2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .header-button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .header-button:hover {
+            background-color: var(--accent-hover);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(to right, rgba(14, 14, 18, 0.9), rgba(14, 14, 18, 0.8)), url('https://images.unsplash.com/photo-1639322537504-6427a16b0e1d?q=80&w=1932&auto=format&fit=crop') no-repeat center/cover;
+            padding-top: 80px;
+            overflow: hidden;
+        }
+
+        .hero:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(to top, var(--primary-bg), transparent);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 650px;
+        }
+
+        .hero span {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: var(--accent);
+            color: white;
+            font-weight: 600;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 15px rgba(191, 159, 251, 0.5);
+        }
+
+        .hero p {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: transparent;
+            color: white;
+            border: 2px solid var(--accent);
+            box-shadow: 0 0 10px rgba(191, 159, 251, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(191, 159, 251, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        /* About Section */
+        .about {
+            padding: var(--section-padding);
+            background-color: var(--secondary-bg);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .about-image {
+            position: relative;
+            height: 100%;
+            min-height: 400px;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-text h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* Timeline Section */
+        .timeline {
+            padding: var(--section-padding);
+            position: relative;
+        }
+
+        .timeline h2 {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .timeline h2:after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .timeline-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: rgba(255, 255, 255, 0.3);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 5px;
+            z-index: 0;
+        }
+
+        /* Add a purple line after 2025 */
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--accent);
+            top: 55%; /* Position to start around 2026 (after 2025 dot) */
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 5px;
+            z-index: 1;
+            box-shadow: 0 0 10px rgba(191, 159, 251, 0.5);
+        }
+
+        .timeline-item {
+            padding: 15px 30px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+            margin-bottom: 5rem;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: var(--secondary-bg);
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            border-left: 4px solid var(--accent);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            border-right: 4px solid var(--accent);
+        }
+
+        /* Special styling for future timeline items (2026-2027) */
+        .timeline-item:nth-child(5) .timeline-content,
+        .timeline-item:nth-child(6) .timeline-content {
+            background-color: rgba(191, 159, 251, 0.05);
+        }
+
+        .timeline-item:nth-child(5)::after,
+        .timeline-item:nth-child(6)::after {
+            background-color: var(--accent);
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        .timeline-date {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+
+        .timeline-title {
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .timeline-description {
+            color: var(--text-secondary);
+        }
+
+        .timeline-description {
+            max-height: 170px; /* Начальная высота */
+            overflow: hidden;
+            position: relative;
+            transition: max-height 0.5s ease;
+        }
+
+        .timeline-description::after {
+            content: '...';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(to right, transparent, var(--secondary-bg));
+            padding-left: 20px;
+        }
+
+        .timeline-item:hover .timeline-description {
+            max-height: 600px; /* Максимальная высота при раскрытии */
+        }
+
+        .timeline-item:hover .timeline-description::after {
+            display: none;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            top: 20px;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(odd)::after {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -10px;
+        }
+
+        /* Focus Section */
+        .focus {
+            padding: var(--section-padding);
+            background-color: var(--secondary-bg);
+        }
+
+        .focus-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .focus-card {
+            background-color: rgba(255, 255, 255, 0.03);
+            padding: 2rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .focus-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+        }
+
+        .focus-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 77, 77, 0.1);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            color: var(--accent);
+        }
+
+        .focus-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .focus-card p {
+            color: var(--text-secondary);
+        }
+
+        /* Market Analysis Section */
+        .market-analysis {
+            padding: var(--section-padding);
+        }
+
+        .market-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .market-card {
+            background-color: rgba(255, 255, 255, 0.03);
+            padding: 2rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .market-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .market-image {
+            width: 100%;
+            height: 200px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        .market-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .market-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .market-card p {
+            color: var(--text-secondary);
+        }
+
+        /* Careers Section */
+        .careers {
+            padding: var(--section-padding);
+            background-color: var(--secondary-bg);
+        }
+
+        .careers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .career-card {
+            background-color: rgba(255, 255, 255, 0.03);
+            padding: 2rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .career-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+        }
+
+        .career-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .career-type {
+            display: block;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .career-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .career-details-full {
+            display: none;
+            background-color: rgba(30, 30, 30, 0.9);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 2rem;
+            box-sizing: border-box;
+        }
+
+        .career-details-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--secondary-bg);
+            padding: 2rem;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .career-details-content ul {
+            padding-left: 1.5rem;         /* создаёт отступ слева */
+            margin-bottom: 1.5rem;        /* отступ снизу от списка */
+            list-style-type: disc;        /* обычные буллеты */
+            color: var(--text-secondary); /* чтобы цвет совпадал с <p> */
+        }
+
+        .career-details-content li {
+            margin-bottom: 0.75rem;       /* отступ между пунктами */
+            line-height: 1.6;
+        }
+
+
+        .career-details-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            font-size: 2rem;
+            color: var(--accent);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: var(--section-padding);
+        }
+
+        .contact-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contact-info p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-link i {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 77, 77, 0.1);
+            color: var(--accent);
+        }
+
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+                /* Стили для выпадающего списка */
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            color: var(--text);
+            transition: all 0.3s ease;
+            appearance: none; /* Убираем стандартный вид селекта */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23bf9ffb' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 16px;
+        }
+
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 1px var(--accent);
+        }
+
+        /* Стили для option внутри select */
+        .form-group select option {
+            background-color: var(--secondary-bg);
+            color: var(--text);
+            padding: 0.5rem;
+        }
+
+        /* Стили для открытого списка */
+        .form-group select:focus option:hover,
+        .form-group select:focus option:checked {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary-bg);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand {
+            max-width: 300px;
+        }
+
+        .footer-brand img {
+            height: 60px;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-brand p {
+            color: var(--text-secondary);
+        }
+
+        .footer-links h4 {
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-bottom p {
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: 0;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .fade-in.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Chart Container */
+        .chart-container {
+            background-color: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            padding: 2rem;
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 2rem;
+        }
+
+        .chart-line {
+            position: absolute;
+            bottom: 50px;
+            left: 50px;
+            width: calc(100% - 100px);
+            height: 2px;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .chart-points {
+            position: absolute;
+            bottom: 50px;
+            left: 50px;
+            width: calc(100% - 100px);
+            height: 300px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .chart-point {
+            position: relative;
+            width: 10px;
+        }
+
+        .chart-value {
+            position: absolute;
+            height: 0;
+            bottom: 0;
+            left: 0;
+            width: 4px;
+            background-color: var(--accent);
+            transition: height 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(-50%);
+        }
+
+        .chart-label {
+            position: absolute;
+            bottom: -30px;
+            left: 0;
+            transform: translateX(-50%) rotate(-45deg);
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+
+        /* Performance Cards */
+        .performance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .performance-card {
+            background-color: rgba(255, 255, 255, 0.03);
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+
+        .performance-card:hover {
+            border-color: var(--accent);
+        }
+
+        .performance-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .performance-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .performance-period {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+
+            h2 {
+                font-size: 2.2rem;
+            }
+
+            .timeline-container::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                border-left: 4px solid var(--accent);
+                border-right: none;
+            }
+
+            .timeline-item::after {
+                left: 21px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem 0;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                min-height: 80vh;
+            }
+
+            h1 {
+                font-size: 2.3rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .btn {
+                padding: 0.7rem 1.5rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .focus-grid,
+            .careers-grid,
+            .market-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="100" height="100" rx="10" fill="#0E0E12"/>
+                        <path d="M25 70H75M30 40H70M35 50H65" stroke="#FFFFFF" stroke-width="3"/>
+                        <circle cx="80" cy="30" r="10" fill="#bf9ffb"/>
+                        <path d="M25 60V70H75V60" stroke="#FFFFFF" stroke-width="3"/>
+                    </svg>
+                    <div class="logo-text">WILD MARKET CAPITAL</div>
+                    <div class="logo-subtitle">Since 2022</div>
+                </div>
+                <div class="nav-links">
+                    <a href="#about">About</a>
+                    <a href="#way">Way</a>
+                    <a href="#focus">Focus</a>
+                    <a href="#careers">Careers</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <a href="#contact" class="header-button">Get in touch</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>We Are Working On The Wild Market</h1>
+                <p>Evolving from a decentralized initiative to a structured fund, we develop autonomous trading systems powered by data-driven models and precise execution</p>
+                <div class="hero-buttons">
+                    <a href="#about" class="btn btn-primary">Discover Our Approach</a>
+                    <a href="#careers" class="btn btn-secondary">Join Our Team</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>Who We Are</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="images/kek.jpg" alt="Trading Dashboard">
+                </div>
+                <div class="about-text">
+                    <h3>Navigating Volatile Markets with Precision</h3>
+                    <p>Financial markets are inherently volatile — none more so than the crypto space. Where others see chaos, we see structure. Where most hesitate, we execute with confidence.</p>
+                    <p>Wild Market Capital is an early-stage trading firm developing algorithmic strategies for high-volatility environments. Our systems are powered by data science, market research, and precision engineering.</p>
+                    <p>We believe that markets are not only systems — they are stories. Our mission is to decode those stories through data, models, and execution.</p>
+                    <p>We’re not here to follow hype cycles or chase short-term trends. We are building an adaptive, research-driven trading firm, focused on innovating within digital finance. Our global team brings together traders, developers, and quantitative researchers with a shared mission: to turn uncertainty into sustainable performance. We’re here to learn fast, build carefully, and grow into a long-term player in algorithmic trading.</p>
+                    <p>This is a firm for those who believe in data over opinion, models over noise, and innovation over imitation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section id="Way" class="timeline">
+        <div class="container">
+            <h2>Our Way</h2>
+            <div class="timeline-container">
+                <div class="timeline-item fade-in">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2022</div>
+                        <div class="timeline-title">Establishing a Collaborative Research Foundation</div>
+                        <div class="timeline-description">
+                            <p>We started as a grassroots, research-first initiative built on collaboration, risk-taking, and curiosity. Operating as a DAO, we brought together traders, analysts, developers, and creatives to navigate the volatile but opportunity-rich world of Web3.</p>
+                            <p>— Formed an active Russian-speaking DAO community</p>
+                            <p>— Built and managed high-risk crypto and NFT portfolios</p>
+                            <p>— Collaborated with established DAOs and ecosystem players</p>
+                            <p>— Delivered deep-dive research in macroeconomics, crypto trends, and NFT markets</p>
+                            <p>— Provided consulting services and launched early experimental trading strategies</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2023</div>
+                        <div class="timeline-title">Growth & Infrastructure</div>
+                        <div class="timeline-description">
+                            <p>With growing expertise and community support, we expanded into multi-asset portfolio management,  operated a "retro-hunting farm" for airdrops, ran validator nodes, refined our portfolio risk management and created educational content.</p>
+                            <p>— Structured diversified portfolios for early-stage investors</p>
+                            <p>— Developed educational content on trading, NFTs, and testnet farming</p>
+                            <p>— Launched a large-scale airdrop farming program (Arbitrum, Optimism, Blur, Starknet, Aptos, Sui, LayerZero, ZkSync)</p>
+                            <p>— Ran validator nodes, optimized reward flows, and refined portfolio risk management</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024</div>
+                        <div class="timeline-title">Vision Becomes Product</div>
+                        <div class="timeline-description">
+                            <p>As markets matured, so did we. We capitalized on the bear market by rotating capital into undervalued assets and began transitioning from manual to automated trading systems. Delved into analysis and research.</p>
+                            <p>— Locked in profits, rebalanced our portfolios across tokens and NFTs</p>
+                            <p>— Explored meme coin narratives through short-term trading models</p>
+                            <p>— Began building internal tools for data analysis and real-time decision-making</p>
+                            <p>— Began to delve deeper into the study of market making, complex forecasting and trading models</p>
+                            <p>This year laid the foundation for systematic experimentation and cross-market strategy design.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2025</div>
+                        <div class="timeline-title">Execution at Scale</div>
+                        <div class="timeline-description">
+                            <p>Today, we are constructing the technical and strategic backbone of our vision: designing auto-trading strategies, scaling research into production-grade trading models, and launching infrastructure for low-latency execution.</p>
+                            <p>— Building a proprietary algorithmic market-making fund</p>
+                            <p>— Designing automated trading strategies: statistical arbitrage, basket trading, mean reversion, spread capture, "knife catching",а та etc</p>
+                            <p>— Scaling internal research into production-grade trading models</p>
+                            <p>— Launching infrastructure to support low-latency execution and deep market integration</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2026</div>
+                        <div class="timeline-title">Algorithmic Fund Launch</div>
+                        <div class="timeline-description">
+                            <p>Full deployment of our autonomous algorithmic trading fund with cross-market capabilities. Integration of machine learning models for predictive signals and expansion of asset coverage to emergent markets.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2027</div>
+                        <div class="timeline-title">Market Making & Capital Expansion</div>
+                        <div class="timeline-description">
+                            <p>Scaling our market making operations across multiple venues and asset classes. Building infrastructure for external capital allocation with institutional-grade risk management and compliance systems.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+            </div>
+        </div>
+    </section>
+
+    <!-- Performance Section -->
+    <section id="performance" class="market-analysis">
+        <div class="container">
+            <h2>Performance</h2>
+
+            <div class="performance-grid">
+                <div class="performance-card fade-in">
+                    <h3>Market Experience</h3>
+                    <div class="performance-value">&#62; 3 years</div>
+                    <div class="performance-period">In Crypto</div>
+                </div>
+                <div class="performance-card fade-in">
+                    <h3>Portfolio Management</h3>
+                    <div class="performance-value">&#62; $5M</div>
+                    <div class="performance-period">AUM</div>
+                </div>
+                <div class="performance-card fade-in">
+                    <h3>Portfolio Growth</h3>
+                    <div class="performance-value">&#62; 5x</div>
+                    <div class="performance-period">Cumulative return</div>
+                </div>
+                <div class="performance-card fade-in">
+                    <h3>Algorithmic Strategies</h3>
+                    <div class="performance-value">&#62; 150%</div>
+                    <div class="performance-period">Annual performance</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Focus Section -->
+    <section id="focus" class="focus">
+        <div class="container">
+            <h2>Our Core Focus</h2>
+            <div class="focus-grid">
+                <div class="focus-card fade-in">
+                    <div class="focus-icon">📊</div>
+                    <h3>Quantitative Research</h3>
+                    <p>We combine statistical methods with market intuition to develop predictive models across crypto and traditional markets. Our research process transforms data into actionable trading signals.</p>
+                </div>
+                <div class="focus-card fade-in">
+                    <div class="focus-icon">⚙️</div>
+                    <h3>Algorithmic Trading</h3>
+                    <p>Building autonomous execution systems that operate 24/7 across global markets. Our algos are designed for efficiency, adaptability, and millisecond-level precision.</p>
+                </div>
+                <div class="focus-card fade-in">
+                    <div class="focus-icon">📈</div>
+                    <h3>Portfolio Management</h3>
+                    <p>Sophisticated risk management frameworks that balance opportunity capture with downside protection. We monitor correlations, drawdowns, and volatility regimes in real-time.</p>
+                </div>
+                <div class="focus-card fade-in">
+                    <div class="focus-icon">🔍</div>
+                    <h3>On-chain Analysis</h3>
+                    <p>Deep blockchain data extraction and pattern recognition across multiple networks. We identify on-chain signals that precede price movement and liquidity shifts.</p>
+                </div>
+                <div class="focus-card fade-in">
+                    <div class="focus-icon">📡</div>
+                    <h3>Valuation Modeling</h3>
+                    <p>Quantitative frameworks for determining fair value across digital assets. Our models incorporate network metrics, tokenomics, market dynamics, and fundamental growth factors.</p>
+                </div>
+                <div class="focus-card fade-in">
+                    <div class="focus-icon">🧠</div>
+                    <h3>Macro Analysis</h3>
+                    <p>Deep integration of global macro factors with crypto-specific catalysts. Our research identifies economic regime shifts and translates them into positioning strategies across various market conditions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Careers Section -->
+    <section id="careers" class="careers">
+        <div class="container">
+            <h2>Join Our Team</h2>
+            <p>We’re assembling a lean, high-impact team to push the boundaries of crypto trading. If you’re into low-latency systems, predictive modeling, or building real-world solutions — we want to hear from you.</p>
+
+            <div class="careers-grid">
+                <div class="career-card fade-in" data-role="quantitative-analyst">
+                    <h3 class="career-title">Quantitative Analyst</h3>
+                    <span class="career-type">Statistical models • Strategy design • Signal analysis</span>
+                    <p>You'll work with Python (Rust, C++) and market data feeds to design and test real trading strategies that drive our algorithmic systems.</p>
+                    <a href="#contact" class="btn btn-primary">Apply Now</a>
+                </div>
+                <div class="career-card fade-in" data-role="rust-cpp-engineer">
+                    <h3 class="career-title">Rust / C++ Engineer</h3>
+                    <span class="career-type">Core infra • Latency-sensitive code • Exchange integration</span>
+                    <p>You'll build real-time execution engines, optimize networking, and work on high-throughput systems that form the backbone of our trading infrastructure.</p>
+                    <a href="#contact" class="btn btn-primary">Apply Now</a>
+                </div>
+                <div class="career-card fade-in" data-role="python-analyst">
+                    <h3 class="career-title">Python Analyst</h3>
+                    <span class="career-type">Data pipelines • Backtesting • Market analytics</span>
+                    <p>Perfect for someone who can turn data into decisions, fast. You'll develop research tools and analytical frameworks to uncover market inefficiencies.</p>
+                    <a href="#contact" class="btn btn-primary">Apply Now</a>
+                </div>
+                <div class="career-card fade-in" data-role="frontend-developer">
+                    <h3 class="career-title">Frontend Developer</h3>
+                    <span class="career-type">Real-time dashboards • WebSocket APIs • Visual analytics</span>
+                    <p>React, TypeScript, D3.js — help us monitor and control everything that moves. You'll build the visual interfaces that power our decision-making.</p>
+                    <a href="#contact" class="btn btn-primary">Apply Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <div class="contact-flex">
+                <div class="contact-form" style="flex: 1; max-width: 600px; margin: 0 auto;">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" placeholder="Your name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" placeholder="Your email">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <select id="subject">
+                                <option value="careers">Careers</option>
+                                <option value="investment">Investment</option>
+                                <option value="partnership">Partnership</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" placeholder="Your message"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <svg width="60" height="60" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="100" height="100" rx="10" fill="#0E0E12"/>
+                        <path d="M25 70H75M30 40H70M35 50H65" stroke="#FFFFFF" stroke-width="3"/>
+                        <circle cx="80" cy="30" r="10" fill="#bf9ffb"/>
+                        <path d="M25 60V70H75V60" stroke="#FFFFFF" stroke-width="3"/>
+                    </svg>
+                    <p>Founded as a community DAO in 2022, Wild Market Capital is now building scalable algorithmic strategies across both traditional and digital markets.</p>
+                    <div class="social-links">
+                        <a href="https://x.com/WyldMarket" target="_blank">X</a>
+                        <a href="https://t.me/wildmarket_capital" target="_blank">TG</a>
+                        <a href="https://medium.com/@WildMarket" target="_blank">M</a>
+                        <a href="https://linkedin.com/company/wild-market-capital" target="_blank">in</a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#way">Our Way</a></li>
+                        <li><a href="#performance">Performance</a></li>
+                        <li><a href="#focus">Our Focus</a></li>
+                        <li><a href="#careers">Careers</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Research Reports</a></li>
+                        <li><a href="#">Market Insights</a></li>
+                        <li><a href="#">Macro Analysis</a></li>
+                        <li><a href="#">On-chain Analytics</a></li>
+                        <li><a href="#">Trading Strategies</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Risk Disclosure</a></li>
+                        <li><a href="#">Compliance</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Wild Market Capital. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- JavaScript -->
+    <script>
+        // Intersection Observer for animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Chart animation
+            setTimeout(() => {
+                document.querySelectorAll('.chart-value').forEach(el => {
+                    el.style.height = el.style.height;
+                });
+            }, 1000);
+
+            // Header scroll effect
+            const header = document.querySelector('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    header.style.padding = '0.8rem 0';
+                    header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                } else {
+                    header.style.padding = '1.5rem 0';
+                    header.style.boxShadow = 'none';
+                }
+            });
+        });
+    </script>
+
+    <script>
+        const jobDescriptions = {
+            "quantitative-analyst": {
+                title: "Quantitative Analyst",
+                type: "Full-Time",
+                html: `
+                    <h3>About the Job</h3>
+                    <p>Quantitative Researcher/Trader/Analyst</p>
+                    <p><strong>Location:</strong> Remote / Global</p>
+                    <p><strong>Company:</strong> Wild Market Capital</p>
+
+                    <h3>About Us</h3>
+                    <p>Wild Market Capital is a data-driven algorithmic trading fund. We combine advanced quantitative research with institutional-grade portfolio and risk management practices.</p>
+
+                    <h3>Our Expertise Includes:</h3>
+                    <ul>
+                        <li>Algorithmic and quantitative trading</li>
+                        <li>Digital asset portfolio construction</li>
+                        <li>Market data analytics and predictive modeling</li>
+                        <li>NFT and crypto market strategies</li>
+                    </ul>
+
+                    <h3>What You'll Do</h3>
+                    <ul>
+                        <li>Design, develop, and test algorithmic trading strategies</li>
+                        <li>Analyze market microstructure and order book dynamics</li>
+                        <li>Build models to assess risk and simulate strategy performance</li>
+                        <li>Detect anomalies and hidden alpha signals</li>
+                        <li>Collaborate with engineers to implement low-latency infrastructure</li>
+                    </ul>
+
+                    <h3>What We're Looking For</h3>
+                    <ul>
+                        <li>MSc or PhD in Math, Physics, Stats, CS</li>
+                        <li>5-10 years of experience as a quantitative analyst/trader/researcher</li>
+                        <li>Strong programming skills (Python, Rust, C++)</li>
+                        <li>Experience in mathematical modeling and quantitative finance</li>
+                        <li>Have experience in developing highly effective strategies</li>
+                        <li>Having a statistics of your highly effective strategies and algorithms is a plus</li>
+                        <li>Understanding of market microstructure</li>
+                        <li>Languages: English required; additional languages like Russian, Japanese, German or Hebrew a plus</li>
+                    </ul>
+
+                    <h3>What We Offer</h3>
+                    <ul>
+                        <li>$100,000+ salary based on experience</li>
+                        <li>Highly collaborative global team</li>
+                        <li>Weekly brainstorm sessions</li>
+                        <li>International travel opportunities</li>
+                        <li>Cutting-edge research environment</li>
+                    </ul>
+
+                    <a href="#contact" class="btn btn-primary">Apply Now</a>
+                `
+            },
+            "rust-cpp-engineer": {
+                title: "Rust / C++ Engineer",
+                type: "Full-Time",
+                html: `
+                    <h3>About the Job</h3>
+                    <p>Rust / C++ Engineer</p>
+                    <p><strong>Location:</strong> Remote / Global</p>
+                    <p><strong>Company:</strong> Wild Market Capital</p>
+
+                    <h3>About Us</h3>
+                    <p>Wild Market Capital is a data-driven algorithmic trading fund. We combine advanced quantitative research with institutional-grade portfolio and risk management practices.</p>
+
+                    <h3>Our Expertise Includes:</h3>
+                    <ul>
+                        <li>Algorithmic and quantitative trading</li>
+                        <li>Digital asset portfolio construction</li>
+                        <li>Market data analytics and predictive modeling</li>
+                        <li>NFT and crypto market strategies</li>
+                    </ul>
+
+                    <h3>What You'll Do</h3>
+                    <ul>
+                        <li>Build real-time execution engines, focusing on low-latency and high-throughput systems</li>
+                        <li>Integrate with exchange APIs (FIX, WebSocket) for seamless order execution</li>
+                        <li>Optimize networking, memory usage, and multithreaded processes for trading infrastructure</li>
+                        <li>Develop and maintain the backbone of algorithmic trading systems</li>
+                        <li>Collaborate with quants to deploy strategies into production environments</li>
+                    </ul>
+
+                    <h3>What We're Looking For</h3>
+                    <ul>
+                        <li>Strong expertise in Rust and/or C++ (C++17/20), with a focus on performance optimization</li>
+                        <li>Experience with low-latency systems, ideally in HFT or algorithmic trading</li>
+                        <li>Knowledge of Linux systems, network stacks, and profiling tools (e.g., perf, valgrind)</li>
+                        <li>Understanding of exchange protocols and market connectivity</li>
+                        <li>Prior experience in financial markets or systems engineering is a plus</li>
+                        <li>Languages: English required; additional languages like Russian, Japanese, German or Hebrew a plus</li>
+                    </ul>
+
+                    <h3>What We Offer</h3>
+                    <ul>
+                        <li>Decent salary based on experience</li>
+                        <li>Highly collaborative global team</li>
+                        <li>Weekly brainstorm sessions</li>
+                        <li>International travel opportunities</li>
+                        <li>Cutting-edge research environment</li>
+                    </ul>
+
+                    <a href="#contact" class="btn btn-primary">Apply Now</a>
+                `
+            },
+            "python-analyst": {
+                title: "Python Analyst / Data Analyst",
+                type: "Junior position / Entry",
+                html: `
+                    <h3>About the Job</h3>
+                    <p>Python Analyst</p>
+                    <p><strong>Location:</strong> Remote / Global</p>
+                    <p><strong>Company:</strong> Wild Market Capital</p>
+
+                    <h3>About Us</h3>
+                    <p>Wild Market Capital is a data-driven algorithmic trading fund. We combine advanced quantitative research with institutional-grade portfolio and risk management practices.</p>
+
+                    <h3>Our Expertise Includes:</h3>
+                    <ul>
+                        <li>Algorithmic and quantitative trading</li>
+                        <li>Digital asset portfolio construction</li>
+                        <li>Market data analytics and predictive modeling</li>
+                        <li>NFT and crypto market strategies</li>
+                    </ul>
+
+                    <h3>What You'll Do</h3>
+                    <ul>
+                        <li>Build data pipelines, backtesting frameworks, and market analytics tools</li>
+                        <li>Analyze large datasets to uncover market inefficiencies and trading signals</li>
+                        <li>Develop research tools using Python to support trading strategy development</li>
+                        <li>Create visualizations and reports to communicate findings to the team</li>
+                        <li>Work with historical and real-time data from exchanges like Binance</li>
+                        <li>Basically, this is a vacancy to relieve the main quantitative analyst, roughly speaking, you will be helping him</li>
+                    </ul>
+
+                    <h3>What We're Looking For</h3>
+                    <ul>
+                        <li>Proficiency in Python (pandas, NumPy, Plotly, Seaborn) for data analysis and visualization</li>
+                        <li>Experience with data pipelines, backtesting, or market analytics in financial markets</li>
+                        <li>Familiarity with SQL, Parquet, or Redis for handling large datasets</li>
+                        <li>Basic understanding of statistics and financial metrics (e.g., Sharpe ratio, drawdowns)</li>
+                        <li>Experience on the crypto market and trading is a plus</li>
+                        <li>Ability to work independently and turn data into actionable insights</li>
+                        <li>Languages: English required; additional languages like Russian, Japanese, German or Hebrew a plus</li>
+                    </ul>
+
+                    <h3>What We Offer</h3>
+                    <ul>
+                        <li>Decent salary based on experience</li>
+                        <li>Highly collaborative global team</li>
+                        <li>Weekly brainstorm sessions</li>
+                        <li>International travel opportunities</li>
+                        <li>Cutting-edge research environment</li>
+                    </ul>
+
+                    <a href="#contact" class="btn btn-primary">Apply Now</a>
+                `
+            },
+            "frontend-developer": {
+                title: "Frontend Developer",
+                type: "Remote Contract",
+                html: `
+                    <h3>About the Job</h3>
+                    <p>Frontend Developer</p>
+                    <p><strong>Location:</strong> Remote / Global</p>
+                    <p><strong>Company:</strong> Wild Market Capital</p>
+
+                    <h3>About Us</h3>
+                    <p>Wild Market Capital is a data-driven algorithmic trading fund. We combine advanced quantitative research with institutional-grade portfolio and risk management practices.</p>
+
+                    <h3>Our Expertise Includes:</h3>
+                    <ul>
+                        <li>Algorithmic and quantitative trading</li>
+                        <li>Digital asset portfolio construction</li>
+                        <li>Market data analytics and predictive modeling</li>
+                        <li>NFT and crypto market strategies</li>
+                    </ul>
+
+                    <h3>What You'll Do</h3>
+                    <ul>
+                        <li>Build real-time dashboards for monitoring trading strategies and market data</li>
+                        <li>Develop WebSocket APIs and visual analytics tools for traders and analysts</li>
+                        <li>Create intuitive interfaces using React, TypeScript, and D3.js for data visualization</li>
+                        <li>Integrate with backend systems to display live order books, charts, and alerts</li>
+                        <li>Ensure interfaces are responsive, secure, and optimized for user experience</li>
+                    </ul>
+
+                    <h3>What We're Looking For</h3>
+                    <ul>
+                        <li>Experience with React, TypeScript, and D3.js for building real-time web applications</li>
+                        <li>Proficiency in WebSocket, REST APIs, and state management (e.g., Redux, Zustand)</li>
+                        <li>Familiarity with financial data visualization (e.g., candlestick charts, order books)</li>
+                        <li>Understanding of UX design principles and security best practices</li>
+                        <li>Prior experience with trading platforms or financial dashboards is a plus</li>
+                        <li>Understanding asian style (Love Korean Girls) is a plus</li>
+                        <li>Languages: English required; additional languages like Russian, Japanese, German or Hebrew a plus</li>
+                    </ul>
+
+                    <h3>What We Offer</h3>
+                    <ul>
+                        <li>Decent salary based on experience</li>
+                        <li>Highly collaborative global team</li>
+                        <li>Weekly brainstorm sessions</li>
+                        <li>International travel opportunities</li>
+                        <li>Cutting-edge research environment</li>
+                    </ul>
+
+                    <a href="#contact" class="btn btn-primary">Apply Now</a>
+                `
+            }
+        };
+
+        document.querySelectorAll('.career-card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                if (e.target.closest('.btn')) return;
+
+                const role = card.getAttribute('data-role');
+                const job = jobDescriptions[role];
+
+                if (!job) return;
+
+                const detailsModal = document.createElement('div');
+                detailsModal.classList.add('career-details-full');
+                detailsModal.style.display = 'block';
+
+                detailsModal.innerHTML = `
+                    <div class="career-details-content">
+                        <span class="career-details-close">×</span>
+                        <h2>${job.title}</h2>
+                        <span class="career-type">${job.type}</span>
+                        <div class="career-details-content">${job.html}</div>
+                    </div>
+                `;
+
+                document.body.appendChild(detailsModal);
+
+                detailsModal.querySelector('.career-details-close').addEventListener('click', () => {
+                    document.body.removeChild(detailsModal);
+                });
+
+                detailsModal.addEventListener('click', (e) => {
+                    if (e.target === detailsModal) {
+                        document.body.removeChild(detailsModal);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -71,11 +71,12 @@
         }
 
         .logo-subtitle {
-            font-size: 0.9rem;
-            color: var(--accent);
+            font-size: 0.9rem !important;
+            color: var(--accent) !important;
             margin-left: 0.1rem;
             align-self: flex-end;
             margin-bottom: 0.2rem;
+            text-shadow: 0 0 15px rgba(191, 159, 251, 0.9) !important;
         }
 
         main {
@@ -161,6 +162,19 @@
             color: white;
             transform: translateY(-3px);
         }
+
+        h2:after {
+            box-shadow: 0 0 10px rgba(191, 159, 251, 0.5);
+        }
+        
+        .btn-primary, .header-button, .back-button {
+            box-shadow: 0 0 15px rgba(191, 159, 251, 0.3);
+        }
+        
+        .btn-primary:hover, .header-button:hover, .back-button:hover {
+            box-shadow: 0 0 20px rgba(191, 159, 251, 0.5);
+        }
+        
     </style>
 </head>
 <body>

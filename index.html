@@ -126,11 +126,14 @@
         }
 
         .logo-subtitle {
-            font-size: 0.9rem;
-            color: var(--accent);
+            font-size: 0.9rem !important;
+            color: var(--accent) !important;
             margin-left: 0.1rem;
             align-self: flex-end;
             margin-bottom: 0.2rem;
+            text-shadow: 0 0 15px rgba(191, 159, 251, 0.9) !important;
+            /* Добавляем дополнительный эффект для усиления видимости */
+            filter: drop-shadow(0 0 3px rgba(191, 159, 251, 0.7));
         }
 
         .nav-links {
@@ -169,7 +172,7 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            background: linear-gradient(to right, rgba(14, 14, 18, 0.9), rgba(14, 14, 18, 0.8)), url('https://images.unsplash.com/photo-1639322537504-6427a16b0e1d?q=80&w=1932&auto=format&fit=crop') no-repeat center/cover;
+            background-color: var(--primary-bg);
             padding-top: 80px;
             overflow: hidden;
         }
@@ -181,7 +184,7 @@
             left: 0;
             width: 100%;
             height: 150px;
-            background: linear-gradient(to top, var(--primary-bg), transparent);
+            background-color: var(--primary-bg);
             z-index: 1;
         }
 
@@ -1012,6 +1015,108 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        .btn-primary, .header-button, .back-button {
+            box-shadow: 0 0 15px rgba(191, 159, 251, 0.3);
+        }
+        
+        .btn-primary:hover, .header-button:hover, .back-button:hover {
+            box-shadow: 0 0 20px rgba(191, 159, 251, 0.5);
+        }
+        
+        .focus-card:hover, .career-card:hover, .market-card:hover, .performance-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 15px rgba(191, 159, 251, 0.3);
+        }
+        
+        h2:after {
+            box-shadow: 0 0 10px rgba(191, 159, 251, 0.5);
+        }
+        
+        .timeline-item::after {
+            box-shadow: 0 0 15px rgba(191, 159, 251, 0.4);
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            box-shadow: 0 0 10px rgba(191, 159, 251, 0.4);
+        }
+
+        .timeline-container::before {
+            box-shadow: 0 0 15px rgba(191, 159, 251, 0.5);
+        }
+
+        .hero span {
+            box-shadow: 0 0 20px rgba(191, 159, 251, 0.6);
+        }
+        
+        .social-links a:hover {
+            box-shadow: 0 0 15px rgba(191, 159, 251, 0.5);
+        }
+        
+        .logo-subtitle {
+            color: var(--accent);
+            text-shadow: 0 0 10px rgba(191, 159, 251, 0.5);
+        }
+        
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 8px rgba(191, 159, 251, 0.3);
+        }
+        
+        a:hover {
+            color: var(--accent-hover);
+            text-shadow: 0 0 12px rgba(191, 159, 251, 0.5);
+        }
+        
+        .timeline-date {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+            text-shadow: 0 0 10px rgba(191, 159, 251, 0.4);
+        }
+        
+        .career-type {
+            display: block;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 8px rgba(191, 159, 251, 0.4);
+        }
+        
+        .performance-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-shadow: 0 0 12px rgba(191, 159, 251, 0.3);
+        }
+        
+        .about-text h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            text-shadow: 0 0 10px rgba(191, 159, 251, 0.4);
+        }
+        
+        .career-details-close {
+            color: var(--accent);
+            text-shadow: 0 0 10px rgba(191, 159, 251, 0.5);
+        }
+        
+        .timeline-item:hover .timeline-date {
+            text-shadow: 0 0 14px rgba(191, 159, 251, 0.7);
+        }
+        
+        .timeline-item:nth-child(5)::after,
+        .timeline-item:nth-child(6)::after {
+            background-color: var(--accent);
+            box-shadow: 0 0 20px var(--accent);
+        }
+        
     </style>
 </head>
 <body>
